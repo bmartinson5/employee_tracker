@@ -5,14 +5,16 @@ class EmployeesController < ApplicationController
   end
 
   def new
-    @employee = Employee.new
+    @division = Division.find(params[:division_id])
+    @employee = @division.employees.new
     render :new
   end
 
   def create
-    @employee = Employee.new(employee_params)
+    @division = Division.find(params[:division_id])
+    @employee = @division.employees.new(employee_params)
     if @employee.save
-      redirect_to employees_path
+      redirect_to division_path(params[:division_id])
     else
       render :new
     end
@@ -24,6 +26,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    @division = Division.find(params[:division_id])
     @employee = Employee.find(params[:id])
     render :show
   end
@@ -38,10 +41,13 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+    @employee = Employee.find(params[:id])
+    @employee.destroy
+    redirect_to employee_path
   end
 
   private
     def employee_params
-      params.require(:employee).permit(:name)
+      params.require(:employee).permit(:name, :division_id)
     end
 end

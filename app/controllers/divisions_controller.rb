@@ -38,6 +38,9 @@ class DivisionsController < ApplicationController
   end
 
   def destroy
+    @division = Division.find(params[:id])
+    @division.destroy
+    redirect_to division_path
   end
 
   private

@@ -1,0 +1,13 @@
+<h1>Union Buster Co</h1>
+
+<% if @divisions.any? %>
+  <ul>
+    <% @divisions.each do |division| %>
+      <li><%=link_to division.name, division_path(division.id) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No Divisions here. Now go away.</p>
+<% end %>
+
+<p><%= link_to "Create a division in the company", new_division_path(@division ) %></p>
