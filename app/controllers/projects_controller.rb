@@ -10,9 +10,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    #binding.pry
     @project = Project.new(project_params)
     if @project.save
-      redirect_to projects_path
+      redirect_to divisions_path
     else
       render :new
     end

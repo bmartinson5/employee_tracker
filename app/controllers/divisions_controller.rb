@@ -1,6 +1,8 @@
 class DivisionsController < ApplicationController
   def index
     @divisions = Division.all
+    @projects = Project.all
+    @employees = Employee.all
     render :index
   end
 

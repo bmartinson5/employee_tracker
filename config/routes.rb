@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     resources :employees
   end
 
-  resources :employees do
-    resources :projects
-  end
+  # resources :employees do
+  #   resources :projects
+  # end
 
+  resources :employee_projects
 
 end

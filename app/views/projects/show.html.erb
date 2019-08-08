@@ -1,0 +1,13 @@
+<h2>Project: <%= @project.name %>
+
+<% if @project.employees.any? %>
+  <ul>
+    <% @project.employees.each do |employee| %>
+      <%= link_to employee.name, division_employee_path() %>
+    <% end %>
+    </ul>
+<%else %>
+  <p>There are no employees assigned to this project yet.</p>
+<%end%>
+
+<p><%= link_to "Back to the home page", divisions_path %></p>

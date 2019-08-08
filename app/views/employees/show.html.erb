@@ -1,9 +1,11 @@
-<h2>My name is <%= @employee.name %>. I am an insignificant part of this company.</h2>
+<h2>Employee name: <%= @employee.name %></h2>
 
+<h4>Current Division: <%= Division.find(@employee.division_id).name %></h4>
 <% if @employee.projects.any? %>
+  Assigned Projects:
   <ul>
     <% @employee.projects.each do |project| %>
-      <%= link_to project.name, project_path(project.id) %>
+      <li> <%= link_to project.name, project_path(project.id) %></li>
     <% end %>
     </ul>
 <%else %>
@@ -12,5 +14,5 @@
 
 
 
-<p><%= link_to "Assign a project", new_project_path(@employee.id) %></p>
-<p><%= link_to "Back to the #{@division.name} page", division_path(@division.id) %></p>
+<p><%= link_to "Assign a project", new_employee_project_path(employee_id: @employee.id) %></p>
+<p><%= link_to "Back to the #{@division.name} page", division_path(id: @division.id) %></p>
