@@ -5,7 +5,9 @@
   <h3>Company Divisions:</h3>
   <ul>
     <% @divisions.each do |division| %>
-      <li><%=link_to division.name, division_path(division.id) %></li>
+      <div>
+        <li><%=link_to division.name, division_path(division.id) %></li>
+      </div>
     <% end %>
   </ul>
 <% else %>
@@ -16,7 +18,9 @@
   <h3>Company Projects:</h3>
   <ul>
     <% @projects.each do |project| %>
-      <li><%=link_to project.name, project_path(project.id) %></li>
+      <div class="divisionIndexProjects">
+        <li><%=link_to project.name, project_path(project.id) %></li>
+      </div>
     <% end %>
   </ul>
 <% else %>
@@ -25,9 +29,16 @@
 
 <% if @employees.any? %>
   <h3>Company Employees:</h3>
+  <form class="" action="/divisions" method="get">
+    <input type="text" name="search_name" placeholder="Enter a name">
+    <button type="submit" name="button">Search</button>
+  </form>
+
   <ul>
     <% @employees.each do |employee| %>
-      <li><%=link_to employee.name, division_employee_path(division_id: employee.division_id, id: employee.id) %></li>
+      <div class="divisionIndexEmployees">
+        <li><%=link_to employee.name, division_employee_path(division_id: employee.division_id, id: employee.id) %></li>
+      </div>
     <% end %>
   </ul>
 <% else %>

@@ -1,8 +1,15 @@
 class DivisionsController < ApplicationController
+  
   def index
     @divisions = Division.all
     @projects = Project.all
     @employees = Employee.all
+
+    if(params.key?(:search_name))
+      search_name = params[:search_name]
+      @employees = Employee.search(search_name)
+    end
+
     render :index
   end
 
@@ -42,7 +49,7 @@ class DivisionsController < ApplicationController
   def destroy
     @division = Division.find(params[:id])
     @division.destroy
-    redirect_to division_path
+    redirect_to divisions_path
   end
 
   private
